@@ -2,7 +2,7 @@
 
 {% block body %}
     <form method="post">
-        <input type="image" name="submit" src="{{ url_for('static', filename='images/checked.png') }}" alt=submit>
+        <input type="submit" name="submit" value="{{ submit_button }}">
         <label for="submit">I'm not a robot</label>
     </form>
 {% endblock %}

@@ -5,10 +5,18 @@
 import os
 
 from flask import Flask 
+from werkzeug.utils import secure_filename
+
 
 def create_app(test_config=None):
     # create and configure the app
+
+    UPLOAD_FOLDER = '/path/to/the/uploads'
+    ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
     app = Flask(__name__, instance_relative_config=True)
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
     app.config.from_mapping(
         SECRET_KEY='dev', # change this to a random number/something unique
         DATABASE=os.path.join(app.instance_path, 'selfcaptcha.sqlite'),

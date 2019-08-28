@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block body %}
+    {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+    {% endfor %}
+    <form method="post" enctype="multipart/form-data">
+        <label>Upload a photo of a</label><br>
+        <label>{{ required_image }}</label><br>
+        <input type="file" name="image">
+        <input type="submit" name="submit" value="Submit">
+        <input type="hidden" name="required_image_name" value="{{ required_image }}" id="required_image_name" />
+    </form>
+{% endblock %}
