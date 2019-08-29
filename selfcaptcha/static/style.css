@@ -1,0 +1,48 @@
+html { font-family: sans-serif; background: lightgray; padding: 1rem; }
+body { 
+    background: #e7e7e7; 
+    border-radius: 5px;
+    max-width: 400px;
+    margin: auto;
+    padding: 10px;
+    box-shadow: 0px 0px 9px darkgray
+}
+
+h4 { text-align: center; color: rgb(110, 110, 110); font-size: 0.8em; margin: 0px; margin-top: 5px; padding: 2px;}
+h2 { text-align: center; font-size: 1.5em; font-weight: bold; margin: 2px; padding: 2px;}
+h3 { text-align: center; font-size:1em; font-weight: normal; margin: 2px; padding: 2px;}
+a { color: #377ba8; }
+
+.content { font-family: Helvetica, Arial, sans-serif; }
+
+.flash { margin: 1em 0; padding: 1em; background: #cae6f6; border: 1px solid #377ba8; }
+.content form { display: inline-block; padding: 0; }
+.content label { text-align:left; font-size: 1.1em; }
+.content input, .content textarea { font-size: 1em; }
+.content img { height: 60px; width: auto; align-self: right;}
+input.danger { color: #cc2f2e; }
+input[type=submit] { min-width: 5em; }
+
+.footer {
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:28px;
+    width:100%;
+    color:gray;
+    font-size: 0.9em;
+    text-align: center;
+    padding: 2px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+div.logo {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    margin-right: 2px;
+}
+
+dev.splashtext {
+    text-align: center;
+}

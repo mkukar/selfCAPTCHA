@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
-{% block body %}
+{% block content %}
     <form method="post">
         <input type="submit" name="submit" value="{{ submit_button }}">
         <label for="submit">I'm not a robot</label>
     </form>
+    <div class='logo'>
+        <img src="/static/images/camera.png" alt="selfCAPTCHA">
+        <h4>selfCAPTCHA v1.0</h4>
+    </div>
 {% endblock %}
