@@ -1,24 +1,20 @@
-# selfCAPTCHA
-# Michael Kukar 2019
+# selfCAPTCHA Project
+# CB: Michael Kukar 2019
 # MIT License
 
 import os
 
-from flask import Flask 
+from flask import Flask, redirect, url_for
 from werkzeug.utils import secure_filename
 
 
 def create_app(test_config=None):
     # create and configure the app
 
-    UPLOAD_FOLDER = '/path/to/the/uploads'
-    ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
-
     app = Flask(__name__, instance_relative_config=True, static_url_path='/static')
-    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
     app.config.from_mapping(
-        SECRET_KEY='dev', # change this to a random number/something unique
+        SECRET_KEY='dev', # change this to a random number/something unique if releasing outside dev environment
     )
 
     if test_config is None:
@@ -33,22 +29,19 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-    
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, world!'
-    
-    @app.route('/selfcaptcha')
-    def selfcaptcha():
-        return 'PUT SELF CAPTCHA HERE'
-    
-    @app.route('/about')
-    def about():
-        return 'PUT ABOUT HERE'
 
     from . import iamnotarobot
     app.register_blueprint(iamnotarobot.bp)
+
+    # redirect to selfcaptcha splash page (even for 404 error)
+    @app.route('/')
+    def selfcaptcha():
+        return redirect(url_for('iamnotarobot.splash'))
+
+    @app.errorhandler(404)
+    def page_not_found(e):
+        # your processing here
+        return redirect(url_for('iamnotarobot.splash'))
 
     return app
     

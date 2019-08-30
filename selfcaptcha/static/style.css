@@ -2,26 +2,27 @@ html { font-family: sans-serif; background: lightgray; padding: 1rem; }
 body { 
     background: #e7e7e7; 
     border-radius: 5px;
-    max-width: 400px;
+    max-width: 360px;
+    min-width: 360px;
     margin: auto;
     padding: 10px;
-    box-shadow: 0px 0px 9px darkgray
+    box-shadow: 0px 0px 9px darkgray;
+    min-height: 80px;
 }
 
 h4 { text-align: center; color: rgb(110, 110, 110); font-size: 0.8em; margin: 0px; margin-top: 5px; padding: 2px;}
-h2 { text-align: center; font-size: 1.5em; font-weight: bold; margin: 2px; padding: 2px;}
-h3 { text-align: center; font-size:1em; font-weight: normal; margin: 2px; padding: 2px;}
+h2 { text-align: center; font-size: 1.5em; font-weight: bold; margin: 0; padding: 2px;}
+h3 { text-align: center; font-size: 1em; font-weight: normal; margin: 0; padding: 0px; margin-top:-10px}
 a { color: #377ba8; }
+br { margin: 0; padding: 0;}
 
 .content { font-family: Helvetica, Arial, sans-serif; }
-
-.flash { margin: 1em 0; padding: 1em; background: #cae6f6; border: 1px solid #377ba8; }
 .content form { display: inline-block; padding: 0; }
-.content label { text-align:left; font-size: 1.1em; }
+.content label { text-align:left; font-size: 1.1em; vertical-align: middle; height:50px; padding-left: 5px; margin: 0px}
 .content input, .content textarea { font-size: 1em; }
 .content img { height: 60px; width: auto; align-self: right;}
 input.danger { color: #cc2f2e; }
-input[type=submit] { min-width: 5em; }
+input.image { height: 50px; width: auto; vertical-align: middle;}
 
 .footer {
     position:fixed;
@@ -37,12 +38,19 @@ input[type=submit] { min-width: 5em; }
 }
 
 div.logo {
-    vertical-align: top;
-    display: inline-block;
+    display: block;
     text-align: center;
     margin-right: 2px;
+    float: right;
 }
-
-dev.splashtext {
-    text-align: center;
+div.splashtext {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: left;
+    margin: auto;
+    padding-left: 5px;
+    min-height: 50px;
+    display: inline-block;
+    font-size: 1.3em;
+    vertical-align: middle;
 }
