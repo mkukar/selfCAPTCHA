@@ -11,12 +11,15 @@ The following steps will launch selfCAPTCHA running using a development instance
 
 ### Steps
 Note1 - It is best practice to set this up in a virtual environment such as VENV. See Flask installation guide link in Note2 for more info.
+
 Note2 - Steps written for Windows and tested on Windows 10 and adapted from:
+
 https://flask.palletsprojects.com/en/1.1.x/installation/
+
 https://github.com/OlafenwaMoses/ImageAI
 
 1. Clone the git repo
-2. Install Flask by running
+2. Install Flask
 ```
 pip install flask
 ```
@@ -30,9 +33,8 @@ pip3 install imageai --upgrade
 set FLASK_APP=selfcaptcha
 set FLASK_ENV=development
 ```
-5. Launch Flask
+5. Launch Flask from base directory
 ```
-cd selfCAPTCHA
 python -m flask run
 ```
 6. Load webpage http://127.0.0.1:5000
@@ -42,6 +44,7 @@ MIT License
 
 ## AUTHOR
 Created by Michael Kukar
+
 August 2019
 
 ## ACKNOWLEDGEMENTS
