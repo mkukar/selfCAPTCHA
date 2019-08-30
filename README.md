@@ -12,7 +12,7 @@ The following steps will launch selfCAPTCHA running using a development instance
 ### Steps
 Note1 - It is best practice to set this up in a virtual environment such as VENV. See Flask installation guide link in Note2 for more info.
 
-Note2 - Steps written for Windows and tested on Windows 10 and adapted from:
+Note2 - Steps written for Windows and adapted from:
 
 https://flask.palletsprojects.com/en/1.1.x/installation/
 
