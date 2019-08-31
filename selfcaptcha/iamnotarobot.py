@@ -31,8 +31,12 @@ GOAL_IMAGES = [
     'pretzel',
     'banana',
     'soccer ball',
-    'school bus'
+    'school bus',
+    'cup'
 ]
+
+
+REQUIRED_IMAGE_COUNT = 3
 
 # assigns a random goal image
 # if lastImage is assigned, then we make sure the new image != lastImage
@@ -50,7 +54,6 @@ def getGoalImage(lastImage = None):
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-           
 
 # validates the image by checking if we can recognize it using imageai
 # predictionImage is path to image user uploaded
@@ -68,11 +71,13 @@ def validateImage(predictionImage, goalImage):
     # tries top 5 predictions to see if they match (also must meet minimum probability requirement)
     bestGuesses, probabilities = prediction.predictImage(predictionImage, result_count=5 )
     foundMatch = False
+    foundMatchProbability = 0
     for bestGuess, probability in zip(bestGuesses, probabilities):
         if bestGuess == goalImage and probability > 1: # must meet min probability of 1% to consider
             foundMatch = True
+            foundMatchProbability = probability
 
-    return foundMatch
+    return (foundMatch, foundMatchProbability) # we use probability to determine if images are duplicates
 
 
 @bp.route('/selfcaptcha', methods=('GET', 'POST'))
@@ -81,25 +86,39 @@ def splash():
         # if we click the checkbox, load a captcha
         # checkbox uses submit.x and submit.y since it is an image, that is how we recognize it here
         if 'submit.x' in request.form:
-            return render_template('iamnotarobot/captcha.html', required_image=getGoalImage())
+            return render_template('iamnotarobot/captcha.html', required_image=getGoalImage(), required_image_count=REQUIRED_IMAGE_COUNT)
         # the other submit button is from the captcha, so handle the captcha page here
         elif request.form['submit'] == 'Submit':
-            # saves the image, or fails and renders a new captcha
-            if 'image' not in request.files: # no image found
-                return render_template('iamnotarobot/captcha.html', required_image=getGoalImage(request.form['required_image_name']))
-            file = request.files['image']
-            if file.filename == '': # image is empty or not selected
-                return render_template('iamnotarobot/captcha.html', required_image=getGoalImage(request.form['required_image_name']))
-            if not allowed_file(file.filename): # photo is not valid format (incorrect extension)
-                return render_template('iamnotarobot/captcha.html', required_image=getGoalImage(request.form['required_image_name']))
-            if file: # makes sure it is a secure filename and saves it
-                filename = secure_filename(file.filename)
-                file.save(os.path.join(SAVE_IMAGE_PATH, filename))
+            # saves the images, or fails and renders a new captcha
+            filenames = []
+            for imageNumber in range(1, REQUIRED_IMAGE_COUNT+1):
+                if 'image' + str(imageNumber) not in request.files: # image not found
+                    return render_template('iamnotarobot/captcha.html', required_image=getGoalImage(request.form['required_image_name']), required_image_count=REQUIRED_IMAGE_COUNT)
+                file = request.files['image' + str(imageNumber)]
+                if file.filename == '': # image is empty or not selected
+                    return render_template('iamnotarobot/captcha.html', required_image=getGoalImage(request.form['required_image_name']), required_image_count=REQUIRED_IMAGE_COUNT)
+                if not allowed_file(file.filename): # photo is not valid format (incorrect extension)
+                    return render_template('iamnotarobot/captcha.html', required_image=getGoalImage(request.form['required_image_name']), required_image_count=REQUIRED_IMAGE_COUNT)
+                if file: # makes sure it is a secure filename and saves it
+                    filename = str(imageNumber) + secure_filename(file.filename) # prepend the number to make unique
+                    file.save(os.path.join(SAVE_IMAGE_PATH, filename))
+                    filenames.append(filename)
 
-            # checks if the image was validated using image recognition algorithm
-            if not validateImage(os.path.join(SAVE_IMAGE_PATH, filename), request.form['required_image_name']):
+            # checks if all the images were validated using image recognition algorithm
+            allValid = True
+            probabilitiesSet = set() # set will not allow duplicates so we can check length to ensure all photos were unique (not the exact same probability)
+            for savedFile in filenames:
+                validatedImageData = validateImage(os.path.join(SAVE_IMAGE_PATH, savedFile), request.form['required_image_name'])
+                allValid = allValid and validatedImageData[0]
+                probabilitiesSet.add(validatedImageData[1])
+
+            # if we detected duplicate images return False (probabilities are exactly equal between 2 or more images)
+            if len(probabilitiesSet) != REQUIRED_IMAGE_COUNT:
+                allValid = False
+
+            if not allValid:
                 # if not valid, load another captcha (cannot be same as old captcha)
-                return render_template('iamnotarobot/captcha.html', required_image=getGoalImage(request.form['required_image_name']))
+                return render_template('iamnotarobot/captcha.html', required_image=getGoalImage(request.form['required_image_name']), required_image_count=REQUIRED_IMAGE_COUNT)
             else:
                 # if valid, we go to the splash page with a green checkmark now
                 return render_template('iamnotarobot/splash.html', submit_button='green', is_disabled='disabled')

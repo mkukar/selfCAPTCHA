@@ -2,9 +2,11 @@
 
 {% block content %}
     <form method="post" enctype="multipart/form-data">
-        <label><h3>Upload a photo of a</h3></label>
+        <label><h3>Upload {{ required_image_count }} unique photos of a</h3></label>
         <label><h2>{{ required_image }}</h2></label><br>
-        <input type="file" name="image">
+        <input type="file" name="image1">
+        <input type="file" name="image2">
+        <input type="file" name="image3">
         <input type="submit" name="submit" value="Submit">
         <input type="hidden" name="required_image_name" value="{{ required_image }}" id="required_image_name" />
     </form>
