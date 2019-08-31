@@ -1,7 +1,7 @@
 # selfCAPTCHA
 
 ## DESCRIPTION
-selfCAPTCHA is a variation on CAPTCHA where users upload their own photos to verify they are not a robot, rather than clicking on existing photos.
+selfCAPTCHA is a variation on CAPTCHA where users upload their own photos to verify they are not a robot, rather than clicking on existing images.
 
 ## QUICKSTART
 The following steps will launch selfCAPTCHA running using a development instance on localhost.
