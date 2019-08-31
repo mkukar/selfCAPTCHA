@@ -48,13 +48,11 @@ MIT License
 ## AUTHOR
 Created by Michael Kukar
 
-Filmed by Jessica Freidin 
-
 August 2019
 
 ## ACKNOWLEDGEMENTS
 - Icons made by Dave Gandy, Roundicons, and Freepik from http://www.flaticon.com/
 - Website powered by Flask https://flask.palletsprojects.com/
 - Image recognition powered by ImageAI http://imageai.org/
-- Project idea from Jessica Freidin
+- Filmed by and original idea from Jessica Freidin
 - Project created for 1st Programmer Humor Hackathon - Overengineering https://www.programmerhumor.org/Hackathon
