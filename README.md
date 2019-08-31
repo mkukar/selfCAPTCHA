@@ -51,3 +51,4 @@ August 2019
 - Icons made by Dave Gandy, Roundicons, and Freepik from http://www.flaticon.com/
 - Website powered by Flask https://flask.palletsprojects.com/
 - Image recognition powered by ImageAI http://imageai.org/
+- Idea inspired by Jessica Freidin
