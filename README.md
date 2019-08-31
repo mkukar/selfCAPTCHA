@@ -47,6 +47,7 @@ MIT License
 
 ## AUTHOR
 Created by Michael Kukar
+
 Filmed by Jessica Freidin 
 
 August 2019
