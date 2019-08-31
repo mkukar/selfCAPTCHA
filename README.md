@@ -1,7 +1,7 @@
 # selfCAPTCHA
 
 ## DESCRIPTION
-selfCAPTCHA is a variation on CAPTCHA where users upload their own photos to verify they are not a robot.
+selfCAPTCHA is a variation on CAPTCHA where users upload their own photos to verify they are not a robot, rather than clicking on existing photos.
 
 ## QUICKSTART
 The following steps will launch selfCAPTCHA running using a development instance on localhost.
@@ -39,11 +39,15 @@ python -m flask run
 ```
 6. Load webpage http://127.0.0.1:5000
 
+## DEMO GIF
+https://gfycat.com/circularmaturehalcyon
+
 ## LICENSE
 MIT License
 
 ## AUTHOR
 Created by Michael Kukar
+Filmed by Jessica Freidin 
 
 August 2019
 
@@ -52,3 +56,4 @@ August 2019
 - Website powered by Flask https://flask.palletsprojects.com/
 - Image recognition powered by ImageAI http://imageai.org/
 - Project idea from Jessica Freidin
+- Project created for 1st Programmer Humor Hackathon - Overengineering https://www.programmerhumor.org/Hackathon
