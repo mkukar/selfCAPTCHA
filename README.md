@@ -10,9 +10,9 @@ The following steps will launch selfCAPTCHA running using a development instance
 - Python 3.5.1 or higher (64 bit version)
 
 ### Steps
-Note1 - It is best practice to set this up in a virtual environment such as VENV. See Flask installation guide link in Note2 for more info.
+Note 1 - It is best practice to set this up in a virtual environment such as VENV. See Flask installation guide link in Note 2 for more info.
 
-Note2 - Steps written for Windows and adapted from:
+Note 2 - Steps written for Windows and adapted from:
 
 https://flask.palletsprojects.com/en/1.1.x/installation/
 
